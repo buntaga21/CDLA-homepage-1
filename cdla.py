@@ -55,8 +55,6 @@ def reigning_champ_players():
   reigningTid = int(reigning[len(reigning) - 1])
 
   print(reigningTid)
-
-  print(type(reigningTid))
   print(len(cdla['players']))
 
   playerChamps = []
@@ -104,11 +102,11 @@ def reigning_champ_players():
   return (playerChamps)
 
 
-def team0():
+def team0(num):
   players = []
 
   for player in cdla['players']:
-    if player['tid'] == 0:
+    if player['tid'] == num:
       pos = player['ratings'][len(player['ratings']) - 1]['pos']
       ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
       players.append({
@@ -125,400 +123,192 @@ def team0():
   return (players)
 
 
-def team1():
-  players = []
-
+def mvp():
+  awards = []
   for player in cdla['players']:
-    if player['tid'] == 1:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
+    for award in player['awards']:
+      if award['type'] == 'Most Valuable Player':
+        pos = 'n/a'
+        for rating in player['ratings']:
+          if rating['season'] == award['season']:
+            pos = rating['pos']
+        tid = 0
+        for stat in player['stats']:
+          if award['season'] == stat['season']:
+            tid = stat['tid']
+        for team in cdla['teams']:
+          for season in team['seasons']:
+            if season['season'] == award['season']:
+              if player['firstName'] == 'Joel' and player['lastName'] == 'Lee':
+                teamAbbrev = 'ATL'
+              elif tid == season['tid']:
+                teamAbbrev = season['abbrev']
+        awards.append({
+          'name': player['firstName'] + " " + player['lastName'],
+          'age': award['season'] - player['born']['year'],
+          'pos': pos,
+          'season': award['season'],
+          'award': award['type'],
+          'abbrev': teamAbbrev
+        })
+  awards = sorted(awards, key=lambda d: d['season'])
+  return awards
 
 
-def team2():
-  players = []
-
+def dpoy():
+  awards = []
   for player in cdla['players']:
-    if player['tid'] == 2:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
+    for award in player['awards']:
+      if award['type'] == 'Defensive Player of the Year':
+        pos = 'n/a'
+        for rating in player['ratings']:
+          if rating['season'] == award['season']:
+            pos = rating['pos']
+        tid = 0
+        for stat in player['stats']:
+          if award['season'] == stat['season']:
+            tid = stat['tid']
+        for team in cdla['teams']:
+          for season in team['seasons']:
+            if season['season'] == award['season']:
+              if player['firstName'] == 'Joel' and player['lastName'] == 'Lee':
+                teamAbbrev = 'ATL'
+              elif tid == season['tid']:
+                teamAbbrev = season['abbrev']
+        awards.append({
+          'name': player['firstName'] + " " + player['lastName'],
+          'age': award['season'] - player['born']['year'],
+          'pos': pos,
+          'season': award['season'],
+          'award': award['type'],
+          'abbrev': teamAbbrev
+        })
+  awards = sorted(awards, key=lambda d: d['season'])
+  return awards
 
 
-def team3():
-  players = []
-
+def smoty():
+  awards = []
   for player in cdla['players']:
-    if player['tid'] == 3:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
+    for award in player['awards']:
+      if award['type'] == 'Sixth Man of the Year':
+        pos = 'n/a'
+        for rating in player['ratings']:
+          if rating['season'] == award['season']:
+            pos = rating['pos']
+        tid = 0
+        for stat in player['stats']:
+          if award['season'] == stat['season']:
+            tid = stat['tid']
+        for team in cdla['teams']:
+          for season in team['seasons']:
+            if season['season'] == award['season']:
+              if player['firstName'] == 'Joel' and player['lastName'] == 'Lee':
+                teamAbbrev = 'ATL'
+              elif tid == season['tid']:
+                teamAbbrev = season['abbrev']
+        awards.append({
+          'name': player['firstName'] + " " + player['lastName'],
+          'age': award['season'] - player['born']['year'],
+          'pos': pos,
+          'season': award['season'],
+          'award': award['type'],
+          'abbrev': teamAbbrev
+        })
+  awards = sorted(awards, key=lambda d: d['season'])
+  return awards
 
 
-def team4():
-  players = []
-
+def mip():
+  awards = []
   for player in cdla['players']:
-    if player['tid'] == 4:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
+    for award in player['awards']:
+      if award['type'] == 'Most Improved Player':
+        pos = 'n/a'
+        for rating in player['ratings']:
+          if rating['season'] == award['season']:
+            pos = rating['pos']
+        tid = 0
+        for stat in player['stats']:
+          if award['season'] == stat['season']:
+            tid = stat['tid']
+        for team in cdla['teams']:
+          for season in team['seasons']:
+            if season['season'] == award['season']:
+              if player['firstName'] == 'Joel' and player['lastName'] == 'Lee':
+                teamAbbrev = 'ATL'
+              elif tid == season['tid']:
+                teamAbbrev = season['abbrev']
+        awards.append({
+          'name': player['firstName'] + " " + player['lastName'],
+          'age': award['season'] - player['born']['year'],
+          'pos': pos,
+          'season': award['season'],
+          'award': award['type'],
+          'abbrev': teamAbbrev
+        })
+  awards = sorted(awards, key=lambda d: d['season'])
+  return awards
 
 
-def team5():
-  players = []
-
+def roy():
+  awards = []
   for player in cdla['players']:
-    if player['tid'] == 5:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
+    for award in player['awards']:
+      if award['type'] == 'Rookie of the Year':
+        pos = 'n/a'
+        for rating in player['ratings']:
+          if rating['season'] == award['season']:
+            pos = rating['pos']
+        tid = 0
+        for stat in player['stats']:
+          if award['season'] == stat['season']:
+            tid = stat['tid']
+        for team in cdla['teams']:
+          for season in team['seasons']:
+            if season['season'] == award['season']:
+              if player['firstName'] == 'Joel' and player['lastName'] == 'Lee':
+                teamAbbrev = 'ATL'
+              elif tid == season['tid']:
+                teamAbbrev = season['abbrev']
+        awards.append({
+          'name': player['firstName'] + " " + player['lastName'],
+          'age': award['season'] - player['born']['year'],
+          'pos': pos,
+          'season': award['season'],
+          'award': award['type'],
+          'abbrev': teamAbbrev
+        })
+  awards = sorted(awards, key=lambda d: d['season'])
+  return awards
+
+
+def team_history(num):
+  titles = 0
+  wins = 0
+  losses = 0
+  playoffs = 0
+  team_history = {'retired': [], 'stats': []}
+  for team in cdla['teams']:
+    if num == team['tid']:
+      for retired in team['retiredJerseyNumbers']:
+        for player in cdla['players']:
+          if retired['pid'] == player['pid']:
+            name = player['firstName'] + " " + player['lastName']
+            jersey = retired['number']
+            team_history['retired'].append({'name': name, 'jersey': jersey})
+      for stat in team['stats']:
+        if stat['playoffs'] is True:
+          playoffs += 1
+      for season in team['seasons']:
+        wins += season['won']
+        losses += season['lost']
+        if season['playoffRoundsWon'] == 4:
+          titles += 1
+      team_history['stats'].append({
+        'titles': titles,
+        'wins': wins,
+        'losses': losses,
+        'playoffs': playoffs
       })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team6():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 6:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team7():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 7:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team8():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 8:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team9():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 9:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team10():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 10:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team11():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 11:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team12():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 12:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team13():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 13:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team14():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 14:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team15():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 15:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team16():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 16:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team17():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 17:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team18():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 18:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
-
-
-def team19():
-  players = []
-
-  for player in cdla['players']:
-    if player['tid'] == 19:
-      pos = player['ratings'][len(player['ratings']) - 1]['pos']
-      ovr = player['ratings'][len(player['ratings']) - 1]['ovr']
-      players.append({
-        'name':
-        player['firstName'] + " " + player['lastName'],
-        'age':
-        cdla['gameAttributes'][0]['season'] - player['born']['year'],
-        'pos':
-        pos,
-        'ovr':
-        ovr
-      })
-  players = sorted(players, key=lambda d: d['ovr'], reverse=True)
-  return (players)
+  return team_history

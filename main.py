@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import os
 import random
-from cdla import reigning_champ, champions_list, team_list, reigning_champ_players, team0, team1, team2, team3, team4, team5, team6, team7, team8, team9, team10, team11, team12, team13, team14, team15, team16, team17, team18, team19
+from cdla import reigning_champ, champions_list, team_list, reigning_champ_players, team0, mvp, dpoy, smoty, mip, roy, team_history
 
 app = Flask(__name__)
 
@@ -27,10 +27,20 @@ def cdla_history():
   imgrand = random.sample(imgs, k=4)
   champs = champions_list()
   teams = team_list()
+  mv = mvp()
+  dp = dpoy()
+  sm = smoty()
+  mi = mip()
+  ry = roy()
   return render_template('history.html',
                          imgrand=imgrand,
                          champs=champs,
-                         teams=teams)
+                         teams=teams,
+                         mvp=mv,
+                         dpoy=dp,
+                         smoty=sm,
+                         mip=mi,
+                         roy=ry)
 
 
 @app.route("/rules")
@@ -44,190 +54,300 @@ def cdla_rules():
 def rio():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team0()
-  return render_template('0.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 0
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('0.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/1")
 def nyb():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team1()
-  return render_template('1.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 1
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('1.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/2")
 def phi():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team2()
-  return render_template('2.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 2
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('2.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/3")
 def chi():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team3()
-  return render_template('3.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 3
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('3.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/4")
 def mxc():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team4()
-  return render_template('4.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 4
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('4.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/5")
 def bkn():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team5()
-  return render_template('5.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 5
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('5.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/6")
 def tok():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team6()
-  return render_template('6.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 6
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('6.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/7")
 def was():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team7()
-  return render_template('7.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 7
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('7.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/8")
 def mia():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team8()
-  return render_template('8.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 8
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('8.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/9")
 def bei():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team9()
-  return render_template('9.html', imgrand=imgrand, teams=teams, roster=roster)
+  tid = 9
+  roster = team0(tid)
+  history = team_history(tid)
+  return render_template('9.html',
+                         imgrand=imgrand,
+                         teams=teams,
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/10")
 def tor():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team10()
+  tid = 10
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('10.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/11")
 def dal():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team11()
+  tid = 11
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('11.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/12")
 def lon():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team12()
+  tid = 12
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('12.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/13")
 def min():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team13()
+  tid = 13
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('13.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/14")
 def sea():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team14()
+  tid = 14
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('14.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/15")
 def lal():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team15()
+  tid = 15
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('15.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/16")
 def lv():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team16()
+  tid = 16
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('16.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/17")
 def sac():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team17()
+  tid = 17
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('17.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/18")
 def cgy():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team18()
+  tid = 18
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('18.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 @app.route("/19")
 def mem():
   imgrand = random.sample(imgs, k=4)
   teams = team_list()
-  roster = team19()
+  tid = 19
+  roster = team0(tid)
+  history = team_history(tid)
   return render_template('19.html',
                          imgrand=imgrand,
                          teams=teams,
-                         roster=roster)
+                         roster=roster,
+                         tid=tid,
+                         history=history)
 
 
 if __name__ == "__main__":
